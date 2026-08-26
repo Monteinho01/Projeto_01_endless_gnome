@@ -1,0 +1,136 @@
+[gd_scene load_steps=14 format=3 uid="uid://cmypqy8wvbb46"]
+
+[ext_resource type="Script" uid="uid://dduhfr4xf5m28" path="res://scripts/phases/test_world.gd" id="1_ypn5w"]
+[ext_resource type="PackedScene" uid="uid://bwnwisu1r7igp" path="res://scenes/entities/gnomo.tscn" id="2_jask1"]
+[ext_resource type="Texture2D" uid="uid://cncn5q0a78vmr" path="res://sprites/sprite-sheets/Cave_Terrain_01_16x16.png" id="3_i33x4"]
+[ext_resource type="PackedScene" uid="uid://ga8efxy5k718" path="res://scenes/entities/enemy.tscn" id="4_aw3rl"]
+[ext_resource type="PackedScene" uid="uid://cpha3kc7geuu" path="res://scenes/debug/death_zone.tscn" id="5_w5874"]
+[ext_resource type="PackedScene" uid="uid://dlyjdmdqkv4lv" path="res://scenes/entities/npc.tscn" id="6_jask1"]
+[ext_resource type="PackedScene" uid="uid://cnus71qbnaq42" path="res://scenes/ui/dialogue_box.tscn" id="7_i33x4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_63fu1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ob026"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_63fu1"]
+texture = ExtResource("3_i33x4")
+45:5/size_in_atlas = Vector2i(25, 15)
+45:5/0 = 0
+45:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-199.29, -119.26, 200.186, -120.466, 200.186, -15.944, 200.186, 122.238, -198.415, 120.466)
+35:10/size_in_atlas = Vector2i(5, 20)
+35:10/0 = 0
+15:15/size_in_atlas = Vector2i(5, 5)
+15:15/0 = 0
+15:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-39.5, -40, 41.5, -40, 41.5, 19, 26.5, 41, -22.5, 41, -39.5, 19)
+5:35/size_in_atlas = Vector2i(25, 5)
+5:35/0 = 0
+15:40/size_in_atlas = Vector2i(5, 10)
+15:40/0 = 0
+15:25/size_in_atlas = Vector2i(5, 10)
+15:25/0 = 0
+40:35/size_in_atlas = Vector2i(35, 10)
+40:35/0 = 0
+50:45/size_in_atlas = Vector2i(15, 10)
+50:45/0 = 0
+50:25/size_in_atlas = Vector2i(15, 10)
+50:25/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ob026"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_63fu1")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_353ml"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ypn5w"]
+size = Vector2(20, 20)
+
+[node name="TestWorld" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ypn5w")
+metadata/_edit_vertical_guides_ = [-1.0, 3907.0]
+metadata/_edit_horizontal_guides_ = [0.0, 516.0, 1409.0]
+
+[node name="background_temp" type="TextureRect" parent="."]
+modulate = Color(0.141667, 4.33417e-05, 0.170292, 1)
+material = SubResource("CanvasItemMaterial_63fu1")
+layout_mode = 0
+offset_left = -1.0
+offset_top = -17.0
+offset_right = 1888.0
+offset_bottom = 1030.0
+scale = Vector2(2.08, 1.58139)
+texture = SubResource("CanvasTexture_ob026")
+
+[node name="Gnomo" parent="." instance=ExtResource("2_jask1")]
+position = Vector2(1101, 881)
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(616, 797)
+tile_set = SubResource("TileSet_ob026")
+format = 2
+layer_0/tile_data = PackedInt32Array(2162700, 2949120, 5, 2162722, 2949120, 5, 2162744, 2949120, 5, 2162748, 2949120, 5, 1048627, 983040, 15, 1048630, 983040, 15, 1048633, 983040, 15, 1048582, 983040, 15, 1048586, 983040, 15, 1507397, 983040, 25, 720926, 983040, 15, 720924, 983040, 15, 720929, 983040, 15, 1441823, 2293760, 10, 1703944, 2293760, 10, 1703991, 2293760, 10, 2162779, 2949120, 5, 2162801, 2949120, 5, 2162823, 2949120, 5, 1114202, 983040, 15, 1114205, 983040, 15, 786548, 983040, 15, 786552, 983040, 15, 458881, 983040, 15, 458885, 983040, 15, 1704027, 2293760, 10, 65640, 983040, 15, 1114216, 983040, 15, 1114219, 983040, 15, 65644, 983040, 15, 2162856, 2949120, 5, 2162888, 2949120, 5, -327587, 983040, 15, -851860, 983040, 15, -1179527, 983040, 15, -1572731, 983040, 15, -1572728, 983040, 15)
+
+[node name="Enemy" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(1421, 1000)
+
+[node name="Enemy2" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(685, 1002)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(3181, 1192)
+
+[node name="Enemy4" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(2612, 1192)
+
+[node name="Enemy5" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(2093, 1010)
+
+[node name="Enemy6" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(2305, 1012)
+
+[node name="Enemy7" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(2296, 761)
+
+[node name="Enemy8" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(2347, 517)
+
+[node name="Enemy9" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(2684, 845)
+
+[node name="Enemy10" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(2208, 611)
+
+[node name="Enemy11" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(2259, 367)
+
+[node name="Enemy12" parent="." instance=ExtResource("4_aw3rl")]
+position = Vector2(2596, 695)
+
+[node name="DeathZone" parent="." instance=ExtResource("5_w5874")]
+position = Vector2(1900, 1629)
+scale = Vector2(198.819, -1.83287)
+
+[node name="SavePoint" type="Marker2D" parent="."]
+position = Vector2(671, 1182)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(3973, 789)
+scale = Vector2(4.10824, 42.2357)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_353ml")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Area2D"]
+mesh = SubResource("QuadMesh_ypn5w")
+
+[node name="dialogue_box" parent="." instance=ExtResource("7_i33x4")]
+
+[node name="npc" parent="." instance=ExtResource("6_jask1")]
+position = Vector2(3744, 1121)
+
+[node name="dialogue_box2" parent="." instance=ExtResource("7_i33x4")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+
+[editable path="Gnomo"]

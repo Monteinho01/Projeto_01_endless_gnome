@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dlyjdmdqkv4lv"]
+
+[ext_resource type="Script" uid="uid://b67fc8tj5p560" path="res://scenes/entities/npc.gd" id="1_4kvco"]
+[ext_resource type="Texture2D" uid="uid://cf3t5eb53vig0" path="res://icon.svg" id="1_iify0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1fef"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khhxn"]
+size = Vector2(160, 144)
+
+[node name="npc" type="CharacterBody2D" unique_id=335063915]
+script = ExtResource("1_4kvco")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2072402791]
+texture = ExtResource("1_iify0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=996192115]
+shape = SubResource("RectangleShape2D_s1fef")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1816499805]
+position = Vector2(0, -4)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=444700194]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_khhxn")
+debug_color = Color(0.96662074, 0, 0.4823736, 0.41960785)

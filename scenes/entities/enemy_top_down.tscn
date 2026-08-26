@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://yeopcm54a4oq"]
+
+[ext_resource type="Script" uid="uid://bt3aklpwskoen" path="res://scripts/entities/enemy_top_down.gd" id="1_sogmu"]
+[ext_resource type="Texture2D" uid="uid://go6eke2j17jq" path="res://sprites/bettle_walking.png" id="2_blxpk"]
+[ext_resource type="AudioStream" uid="uid://b33bndgoxmlxr" path="res://sfx/place-holder/y2mate_XL9ozUG.mp3" id="3_blxpk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqqvw"]
+radius = 8.66667
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0qjnh"]
+
+[node name="EnemyTopDown" type="CharacterBody2D" groups=["enemies"]]
+scale = Vector2(3, 3)
+script = ExtResource("1_sogmu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yqqvw")
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture = ExtResource("2_blxpk")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="HitBox" type="Area2D" parent="."]
+scale = Vector2(1.18667, 1.12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_0qjnh")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_blxpk")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
