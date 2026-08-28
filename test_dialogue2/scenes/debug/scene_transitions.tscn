@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://3pqoliikxr6k"]
+
+[ext_resource type="Script" uid="uid://c18c72j8r5xyj" path="res://scripts/debug/scene_transitions.gd" id="1_sjb8o"]
+[ext_resource type="AudioStream" uid="uid://d3n78w6gn3p4j" path="res://sfx/place-holder/super-mario-bros.mp3" id="2_m0goy"]
+
+[sub_resource type="Animation" id="Animation_m0goy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/FadeToBlack:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sjb8o"]
+resource_name = "scene_transition"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/FadeToBlack:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l2gw0"]
+_data = {
+&"RESET": SubResource("Animation_m0goy"),
+&"scene_transition": SubResource("Animation_sjb8o")
+}
+
+[node name="SceneTransitions" type="Node"]
+script = ExtResource("1_sjb8o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FadeToBlack" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_l2gw0")
+}
+
+[node name="TransitionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_m0goy")

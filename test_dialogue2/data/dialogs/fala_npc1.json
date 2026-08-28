@@ -1,0 +1,35 @@
+[
+  {
+	"id": "testWorld1",
+	"falas": [
+	  {
+		"nome": "gnomo",
+		"texto": "Procurando por mim?"
+	  },
+	  {
+		"nome": "npc",
+		"texto": "não, só vim avisar para ter cuidado ao avançar, esta área muda de perspectiva."
+	  },
+	{
+		"nome": "gnomo",
+		"texto": "foda-se."
+	  },
+	
+	],
+	"dialogo_final": "Nossa jureg"
+  },
+
+
+
+
+  {
+	"id": "testWorld2",
+	"falas": [
+	  {
+		"nome": "npc",
+		"texto": "Você conseguiu chegar até o testWorld2!"
+	  }
+	],
+	"dialogo_final": "Não tenho mais nada a dizer."
+  }
+]

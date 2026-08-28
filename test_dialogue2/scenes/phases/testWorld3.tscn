@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://badwcfhbk7180"]
+
+[ext_resource type="PackedScene" uid="uid://cpru0jiyo2k12" path="res://scenes/entities/gnomo-topdown.tscn" id="3_0vhl7"]
+
+[node name="Control" type="Control" unique_id=1697096586]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Gnomo-topdown" parent="." unique_id=1776939473 instance=ExtResource("3_0vhl7")]
+position = Vector2(437, 759)

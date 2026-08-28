@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3s3bcwjohsv5"]
+
+[ext_resource type="Texture2D" uid="uid://bebuxybsimsla" path="res://sprites/place-holders/game_over_PNG55.png" id="1_drqq8"]
+[ext_resource type="Script" uid="uid://dwifpmt7rjy5s" path="res://scripts/debug/game_over.gd" id="1_kqha0"]
+[ext_resource type="AudioStream" uid="uid://kxsw2obpgx1b" path="res://sfx/place-holder/dark-souls-you-died-sound-effect_hm5sYFG.mp3" id="3_h4rwr"]
+
+[sub_resource type="Animation" id="Animation_h4rwr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/FadeToBlack:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7mx4e"]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/FadeToBlack:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7mx4e"]
+_data = {
+&"RESET": SubResource("Animation_h4rwr"),
+&"fade_to_black": SubResource("Animation_7mx4e")
+}
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kqha0")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FadeToBlack" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GameOver_sprite" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(950, 531)
+texture = ExtResource("1_drqq8")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 838.0
+offset_top = 688.0
+offset_right = 1080.0
+offset_bottom = 711.0
+text = "press Enter to restart the game"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7mx4e")
+}
+
+[node name="GameOverSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_h4rwr")

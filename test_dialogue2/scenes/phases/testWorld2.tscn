@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cbg6ag24d3704"]
+
+[ext_resource type="Script" uid="uid://c65s3ewtodjxb" path="res://scenes/phases/test_world_2.gd" id="1_ijjow"]
+[ext_resource type="PackedScene" uid="uid://cpru0jiyo2k12" path="res://scenes/entities/gnomo-topdown.tscn" id="2_v1xgh"]
+[ext_resource type="PackedScene" uid="uid://dlyjdmdqkv4lv" path="res://scenes/entities/npc.tscn" id="3_62h3d"]
+[ext_resource type="PackedScene" uid="uid://yeopcm54a4oq" path="res://scenes/entities/enemy_top_down.tscn" id="3_vy5ub"]
+[ext_resource type="PackedScene" uid="uid://cnus71qbnaq42" path="res://scenes/ui/dialogue_box.tscn" id="4_ijjow"]
+
+[node name="TestWorld2" type="Control" unique_id=1974291828]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ijjow")
+
+[node name="GnomoTopDown" parent="." unique_id=356900210 instance=ExtResource("2_v1xgh")]
+position = Vector2(175, 366)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=257455431]
+layer = -2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1163303229]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.180437, 2.26636e-05, 0.180436, 1)
+
+[node name="EnemyTopDown" parent="." unique_id=2001312949 instance=ExtResource("3_vy5ub")]
+position = Vector2(863, 462)
+
+[node name="npc" parent="." unique_id=211530442 instance=ExtResource("3_62h3d")]
+position = Vector2(791, 903)
+
+[node name="dialogue_box" parent="." unique_id=654074136 instance=ExtResource("4_ijjow")]

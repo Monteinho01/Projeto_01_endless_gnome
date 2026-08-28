@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cnus71qbnaq42"]
+
+[ext_resource type="Script" uid="uid://bvmfoasa60buc" path="res://scripts/ui/dialogue_box.gd" id="1_xg44k"]
+[ext_resource type="Texture2D" uid="uid://cf3t5eb53vig0" path="res://icon.svg" id="2_6iboe"]
+[ext_resource type="Texture2D" uid="uid://cl3obi42cq1ec" path="res://sprites/sprite-sheets/Gnomes_-_Angel-sheet.png" id="3_4mjmi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cxg5"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xg44k"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daetb"]
+atlas = ExtResource("3_4mjmi")
+region = Rect2(480, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1fef"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daetb")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="dialogue_box" type="CanvasLayer" unique_id=1303912938 groups=["dialogue_box"]]
+layer = 16
+script = ExtResource("1_xg44k")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=902297408]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -228.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = -32
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=1203519365]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3cxg5")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=385968177]
+layout_mode = 2
+theme_override_constants/margin_left = 288
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer" unique_id=1788920314]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xg44k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer" unique_id=1343865315]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer" unique_id=2008509866]
+custom_minimum_size = Vector2(1584, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 48
+
+[node name="Icon_npc" type="Sprite2D" parent="." unique_id=219150380]
+position = Vector2(168, 940.00006)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_6iboe")
+
+[node name="Icon_gnome" type="AnimatedSprite2D" parent="." unique_id=1012263991]
+position = Vector2(177, 939.00006)
+scale = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_s1fef")
+speed_scale = 0.0

@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://ga8efxy5k718"]
+
+[ext_resource type="Script" uid="uid://gs0iembf3gnf" path="res://scripts/entities/enemy.gd" id="1_md0e3"]
+[ext_resource type="Texture2D" uid="uid://go6eke2j17jq" path="res://sprites/bettle_walking.png" id="2_4ra3w"]
+[ext_resource type="Shader" uid="uid://ck8dhms30tmhw" path="res://hit_flash.tres" id="2_jr1g6"]
+[ext_resource type="AudioStream" uid="uid://b33bndgoxmlxr" path="res://sfx/place-holder/y2mate_XL9ozUG.mp3" id="3_ktqfp"]
+[ext_resource type="AudioStream" uid="uid://sxtx1bh0di0t" path="res://sfx/girotos-sound/inimigoMorrendo.ogg" id="4_defa4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlb8m"]
+shader = ExtResource("2_jr1g6")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(0.843137, 0, 0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
+radius = 19.0
+
+[sub_resource type="Animation" id="Animation_hlb8m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_jr1g6"]
+resource_name = "hit_flash"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4fpkd"]
+_data = {
+&"RESET": SubResource("Animation_hlb8m"),
+&"hit_flash": SubResource("Animation_jr1g6")
+}
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_md0e3")
+
+[node name="Visual" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_hlb8m")
+scale = Vector2(2, 2)
+texture = ExtResource("2_4ra3w")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_5uy6h")
+
+[node name="HitBox" type="Area2D" parent="."]
+scale = Vector2(1.08, 1.12)
+
+[node name="Collision" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_md0e3")
+debug_color = Color(0.991313, 0, 0.267202, 0.42)
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ktqfp")
+
+[node name="EnemyDying" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_defa4")
+
+[node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4fpkd")
+}
+
+[node name="WallDetectionRay" type="RayCast2D" parent="."]
+target_position = Vector2(18, 0)
+
+[node name="LedgeDetectionRay" type="RayCast2D" parent="."]
+position = Vector2(15, 0)
+target_position = Vector2(0, 18)
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
